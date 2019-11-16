@@ -12,7 +12,9 @@ class ProfileScreenState extends State<ProfileScreen>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Color(0xFF9ABBD9),
+      ),
     );
   }
 }

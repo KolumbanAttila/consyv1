@@ -3,14 +3,14 @@ import 'package:consyv1/UI/MainCategoryScreen.dart';
 import 'package:flutter/material.dart';
 
 
-class WhiteHouse extends StatefulWidget{
+class CGU extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
-    return WhiteHouseState();
+    return CGUState();
   }
 }
 
-class WhiteHouseState extends State<WhiteHouse>{
+class CGUState extends State<CGU>{
   @override
   Widget build(BuildContext context) {
 
@@ -22,7 +22,7 @@ class WhiteHouseState extends State<WhiteHouse>{
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          Constants.isHungary ? 'Fehérház' : 'Casă albă',
+          Constants.isHungary ? 'Magyarország Főkonzulátusa' : 'Consulatul general al Ungariei',
           style: TextStyle(
               fontFamily: 'Esteban', color: Colors.black, letterSpacing: 1.5),
         ),
@@ -45,8 +45,8 @@ class WhiteHouseState extends State<WhiteHouse>{
         child: new ListView.builder(
             physics: ScrollPhysics(),
             itemCount: Constants.isHungary
-                ? Constants.whiteHouseListHU.length
-                : Constants.whiteHouseListRO.length,
+                ? Constants.cguListHU.length
+                : Constants.cguListRO.length,
             itemBuilder: (BuildContext ctxt, int index) {
               return Container(
                 margin: EdgeInsets.only(top: 25),
@@ -61,7 +61,7 @@ class WhiteHouseState extends State<WhiteHouse>{
                     children: <Widget>[
                       Constants.isHungary
                           ? Text(
-                        Constants.whiteHouseListHU[index],
+                        Constants.cguListHU[index],
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontSize: 16,
@@ -69,7 +69,7 @@ class WhiteHouseState extends State<WhiteHouse>{
                             color: Colors.black),
                       )
                           : Text(
-                        Constants.whiteHouseListRO[index],
+                        Constants.cguListRO[index],
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontSize: 16,

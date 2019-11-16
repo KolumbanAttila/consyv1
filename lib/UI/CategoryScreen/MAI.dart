@@ -3,14 +3,14 @@ import 'package:consyv1/UI/MainCategoryScreen.dart';
 import 'package:flutter/material.dart';
 
 
-class WhiteHouse extends StatefulWidget{
+class MAI extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
-    return WhiteHouseState();
+    return MAIState();
   }
 }
 
-class WhiteHouseState extends State<WhiteHouse>{
+class MAIState extends State<MAI>{
   @override
   Widget build(BuildContext context) {
 
@@ -22,7 +22,7 @@ class WhiteHouseState extends State<WhiteHouse>{
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          Constants.isHungary ? 'Fehérház' : 'Casă albă',
+          Constants.isHungary ? 'Belügyminisztérium' : 'Ministerul afacerilor interne',
           style: TextStyle(
               fontFamily: 'Esteban', color: Colors.black, letterSpacing: 1.5),
         ),
@@ -45,8 +45,8 @@ class WhiteHouseState extends State<WhiteHouse>{
         child: new ListView.builder(
             physics: ScrollPhysics(),
             itemCount: Constants.isHungary
-                ? Constants.whiteHouseListHU.length
-                : Constants.whiteHouseListRO.length,
+                ? Constants.maiListHU.length
+                : Constants.maiListRO.length,
             itemBuilder: (BuildContext ctxt, int index) {
               return Container(
                 margin: EdgeInsets.only(top: 25),
@@ -61,7 +61,7 @@ class WhiteHouseState extends State<WhiteHouse>{
                     children: <Widget>[
                       Constants.isHungary
                           ? Text(
-                        Constants.whiteHouseListHU[index],
+                        Constants.maiListHU[index],
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontSize: 16,
@@ -69,7 +69,7 @@ class WhiteHouseState extends State<WhiteHouse>{
                             color: Colors.black),
                       )
                           : Text(
-                        Constants.whiteHouseListRO[index],
+                        Constants.maiListRO[index],
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontSize: 16,

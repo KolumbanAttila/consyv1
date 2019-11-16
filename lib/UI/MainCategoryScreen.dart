@@ -1,9 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:consyv1/Constants.dart';
 import 'package:consyv1/Models/StateModel.dart';
-import 'package:consyv1/UI/Categories/CategoyListScreen.dart';
+import 'package:consyv1/UI/CategoryScreen/ANAF.dart';
+import 'package:consyv1/UI/CategoryScreen/CGU.dart';
+import 'package:consyv1/UI/CategoryScreen/MAI.dart';
 import 'package:consyv1/UI/CategoryScreen/Police.dart';
+import 'package:consyv1/UI/CategoryScreen/Posta.dart';
+import 'package:consyv1/UI/CategoryScreen/Primaria.dart';
+import 'package:consyv1/UI/CategoryScreen/Prison.dart';
+import 'package:consyv1/UI/CategoryScreen/Tribunal.dart';
+import 'package:consyv1/UI/CategoryScreen/WhiteHouse.dart';
 import 'package:consyv1/UI/LoginScreens/SignInScreen.dart';
+import 'package:consyv1/UI/ProfilScreen.dart';
 import 'package:consyv1/Util/StateWidget.dart';
 import 'package:flutter/material.dart';
 
@@ -144,7 +152,12 @@ class MainCategoryScreenState extends State<MainCategoryScreen> {
                     Icons.arrow_forward_ios,
                     color: Colors.black,
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ProfileScreen()),
+                    );
+                  },
                 ),
                 ListTile(
                   leading: Icon(
@@ -327,7 +340,7 @@ class MainCategoryScreenState extends State<MainCategoryScreen> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => CategoryListScreen('Fehérház')),
+                      MaterialPageRoute(builder: (context) => WhiteHouse()),
                     );
                   },
                   child: Card(
@@ -428,7 +441,7 @@ class MainCategoryScreenState extends State<MainCategoryScreen> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => CategoryListScreen('Polgármesteri hivatal')),
+                          MaterialPageRoute(builder: (context) => Primaria()),
                         );
                       },
                       child: Card(
@@ -480,7 +493,7 @@ class MainCategoryScreenState extends State<MainCategoryScreen> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => CategoryListScreen('Belügyminisztérium')),
+                      MaterialPageRoute(builder: (context) => MAI()),
                     );
                   },
                   child: Card(
@@ -532,7 +545,7 @@ class MainCategoryScreenState extends State<MainCategoryScreen> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => CategoryListScreen('Törvényszék')),
+                          MaterialPageRoute(builder: (context) => Tribunal()),
                         );
                       },
                       child: Card(
@@ -581,7 +594,7 @@ class MainCategoryScreenState extends State<MainCategoryScreen> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => CategoryListScreen('Román posta')),
+                          MaterialPageRoute(builder: (context) => Posta()),
                         );
                       },
                       child: Card(
@@ -633,7 +646,7 @@ class MainCategoryScreenState extends State<MainCategoryScreen> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => CategoryListScreen('Magyarország Főkonzulátusa')),
+                      MaterialPageRoute(builder: (context) => CGU()),
                     );
                   },
                   child: Card(
@@ -685,7 +698,7 @@ class MainCategoryScreenState extends State<MainCategoryScreen> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => CategoryListScreen('Börtön')),
+                          MaterialPageRoute(builder: (context) => Prison()),
                         );
                       },
                       child: Card(
@@ -734,7 +747,7 @@ class MainCategoryScreenState extends State<MainCategoryScreen> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => CategoryListScreen('ANAF')),
+                          MaterialPageRoute(builder: (context) => ANAF()),
                         );
                       },
                       child: Card(
