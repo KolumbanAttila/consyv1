@@ -54,6 +54,9 @@ flutter:
     - assets/background/background.jpg
     - assets/cards/belugy.jpg
     - assets/cards/konzulatus.jpg
+    - assets/cards/anaf.jpg
+    - assets/cards/interne.jpg
+    - assets/cards/prison.jpg
     - assets/cards/polgarmesterihivatal.jpg
     - assets/cards/posta.jpg
     - assets/cards/rendorseg.jpg
