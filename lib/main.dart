@@ -1,4 +1,6 @@
 import 'package:consyv1/Constants.dart';
+import 'package:consyv1/Localization/app_translations_delegate.dart';
+import 'package:consyv1/Localization/application.dart';
 import 'package:consyv1/Models/StateModel.dart';
 import 'package:consyv1/UI/LoginScreens/ForgotPassword.dart';
 import 'package:consyv1/UI/LoginScreens/SignInScreen.dart';
@@ -8,19 +10,30 @@ import 'package:consyv1/UI/ThemeTest.dart';
 import 'package:consyv1/Util/StateWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 
 
 
-class Consy extends StatelessWidget {
 
-  StateModel appState;
+class LocalisedApp extends StatefulWidget {
+  @override
+  LocalisedAppState createState() {
+    return new LocalisedAppState();
+  }
+}
+
+class LocalisedAppState extends State<LocalisedApp> {
+  AppTranslationsDelegate _newLocaleDelegate;
+
+  @override
+  void initState() {
+    super.initState();
+    _newLocaleDelegate = AppTranslationsDelegate(newLocale: null);
+    application.onLocaleChanged = onLocaleChange;
+  }
 
   @override
   Widget build(BuildContext context) {
-    appState = StateWidget.of(context).state;
-    Constants.uID = appState?.firebaseUserAuth?.uid ?? '';
     return MaterialApp(
       title: 'Consy',
       theme: buildTheme(),
@@ -30,15 +43,31 @@ class Consy extends StatelessWidget {
         '/signin': (context) => SignInScreen(),
         '/signup': (context) => SignUpScreen(),
         '/forgot-password': (context) => ForgotPasswordScreen(),
-
       },
+      localizationsDelegates: [
+        _newLocaleDelegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: [
+        const Locale("hu", ""),
+        const Locale("ro", ""),
+      ],
     );
+  }
+
+  void onLocaleChange(Locale locale) {
+    setState(() {
+      _newLocaleDelegate = AppTranslationsDelegate(newLocale: locale);
+    });
   }
 }
 
+
 void main() {
   StateWidget stateWidget = new StateWidget(
-    child: new Consy(),
+    child: new LocalisedApp(),
   );
   runApp(stateWidget);
 }
+

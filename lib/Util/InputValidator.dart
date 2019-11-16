@@ -1,9 +1,11 @@
+import 'package:consyv1/Constants.dart';
+
 class Validator {
   static String validateEmail(String value) {
     Pattern pattern = r'^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+';
     RegExp regex = new RegExp(pattern);
     if (!regex.hasMatch(value))
-      return 'Helytelen az e-mail!';
+      return Constants.isHungary?'Helytelen az e-mail!':'E-mailul este incorect';
     else
       return null;
   }
@@ -12,7 +14,7 @@ class Validator {
     Pattern pattern = r'^.{6,}$';
     RegExp regex = new RegExp(pattern);
     if (!regex.hasMatch(value))
-      return 'A jelszó minimum 6 karakterből kell álljon!';
+      return Constants.isHungary?'A jelszó minimum 6 karakterből kell álljon!':'Parola trebuie să aibă cel puțin 6 caractere';
     else
       return null;
   }
@@ -21,7 +23,7 @@ class Validator {
     Pattern pattern = r"^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$";
     RegExp regex = new RegExp(pattern);
     if (!regex.hasMatch(value))
-      return 'Adjon meg egy nevet!';
+      return Constants.isHungary?'Kötelező mező':'Câmp obligatoriu';
     else
       return null;
   }

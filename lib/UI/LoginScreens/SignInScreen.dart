@@ -76,7 +76,7 @@ class _SignInScreenState extends State<SignInScreen> {
             color: Colors.grey,
           ),
         ),
-        hintText: 'Jelszó',
+        hintText: Constants.isHungary?'Jelszó':'Parola',
         hintStyle: TextStyle(fontFamily: 'Esteban'),
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
@@ -95,33 +95,19 @@ class _SignInScreenState extends State<SignInScreen> {
         },
         padding: EdgeInsets.all(12),
         color:  Color(0xFFF2AB27),
-        child: Text('Bejelentkezés', style: TextStyle(
+        child: Constants.isHungary?Text('Bejelentkezés', style: TextStyle(
             color: Colors.black,
             fontFamily: 'Esteban',
             fontSize: 20,
-            fontWeight: FontWeight.bold),),
+            fontWeight: FontWeight.bold),):Text('Autentificare', style: TextStyle(
+          color: Colors.black,
+          fontFamily: 'Esteban',
+      fontSize: 20,
+      fontWeight: FontWeight.bold),),
       ),
     );
 
-    final forgotLabel = FlatButton(
-      child: Text(
-        'Elfelejtetted a jelszavad?',
-        style: TextStyle(color: Color(0xFF006B41),fontStyle: FontStyle.italic,fontFamily: 'Esteban'),
-      ),
-      onPressed: () {
-        Navigator.pushNamed(context, '/forgot-password');
-      },
-    );
 
-    final signUpLabel = FlatButton(
-      child: Text(
-        'Még nincs fiókod? Regisztrálj!',
-        style: TextStyle(color: Colors.black54,fontFamily: 'Esteban'),
-      ),
-      onPressed: () {
-        Navigator.pushNamed(context, '/signup');
-      },
-    );
 
     return Scaffold(
       backgroundColor: Color(0xFFc2d1ca),
@@ -179,8 +165,14 @@ class _SignInScreenState extends State<SignInScreen> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                  Text(
+                                  Constants.isHungary?Text(
                                     'Bejelentkezés',
+                                    style: TextStyle(
+                                        fontSize: 25,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black),
+                                  ):Text(
+                                    'Autentificare',
                                     style: TextStyle(
                                         fontSize: 25,
                                         fontWeight: FontWeight.bold,
@@ -191,50 +183,82 @@ class _SignInScreenState extends State<SignInScreen> {
                               SizedBox(
                                 height: 25,
                               ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  GestureDetector(
-                                    onTap: () {
-                                      if(isHungary)
-                                        isHungary =!isHungary;
-                                      setState(() {
-
-                                      });
-                                    },
-                                    child: Row(
-                                      children: <Widget>[
-                                        isHungary?Text('RO',style: TextStyle(fontSize: 18,color: Colors.black),):Text('RO',style: TextStyle(fontSize: 18,color: Colors.white,fontWeight: FontWeight.bold),),
-                                        SizedBox(width: 3,),
-                                        Image.asset('assets/lang/romania.png',width: 20,)
-                                      ],
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              GestureDetector(
+                                onTap: () {
+                                  if (Constants.isHungary == true){
+                                    Constants.isHungary = !Constants.isHungary;
+                                    setState(() {
+                                      print(Constants.isHungary);
+                                    });}
+                                },
+                                child: Row(
+                                  children: <Widget>[
+                                    Constants.isHungary
+                                        ? Text(
+                                      'RO',
+                                      style: TextStyle(fontSize: 18, color: Colors.black),
+                                    )
+                                        : Text(
+                                      'RO',
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
                                     ),
-                                  ),
-                                  SizedBox(
-                                    width: 25,
-                                  ),
-                                  Text('|'),
-                                  SizedBox(
-                                    width: 25,
-                                  ),
-                                  GestureDetector(
-                                    onTap: () {
-                                      if(!isHungary)
-                                        isHungary=!isHungary;
-                                      setState(() {
-
-                                      });
-                                    },
-                                    child: Row(
-                                      children: <Widget>[
-                                        isHungary?Text('HU',style: TextStyle(fontSize: 18,color: Colors.white,fontWeight: FontWeight.bold),):Text('HU',style: TextStyle(fontSize: 18,color: Colors.black),),
-                                        SizedBox(width: 3,),
-                                        Image.asset('assets/lang/hungary.png',width: 20,)
-                                      ],
+                                    SizedBox(
+                                      width: 3,
                                     ),
-                                  ),
-                                ],
+                                    Image.asset(
+                                      'assets/lang/romania.png',
+                                      width: 20,
+                                    )
+                                  ],
+                                ),
                               ),
+                              SizedBox(
+                                width: 25,
+                              ),
+                              Text('|'),
+                              SizedBox(
+                                width: 25,
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  if (!Constants.isHungary){
+                                    Constants.isHungary = !Constants.isHungary;
+                                    setState(() {
+                                      print(Constants.isHungary);
+                                    });}
+                                },
+                                child: Row(
+                                  children: <Widget>[
+                                    Constants.isHungary
+                                        ? Text(
+                                      'HU',
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
+                                    )
+                                        : Text(
+                                      'HU',
+                                      style: TextStyle(fontSize: 18, color: Colors.black),
+                                    ),
+                                    SizedBox(
+                                      width: 3,
+                                    ),
+                                    Image.asset(
+                                      'assets/lang/hungary.png',
+                                      width: 20,
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                               SizedBox(
                                 height: 25,
                               ),
@@ -273,8 +297,14 @@ class _SignInScreenState extends State<SignInScreen> {
                         ),
                         GestureDetector(
                             onTap: () {Navigator.pushNamed(context, '/forgot-password');},
-                            child: Text(
-                              'Elfelejtettem a jelszavamat',
+                            child: Constants.isHungary?Text(
+                              'Elfelejtetted a jelszavad?',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                              ),
+                            ):Text(
+                              'Ai uitat parola?',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,
@@ -285,8 +315,14 @@ class _SignInScreenState extends State<SignInScreen> {
                         ),
                         GestureDetector(
                             onTap: () {Navigator.pushNamed(context, '/signup');},
-                            child: Text(
+                            child: Constants.isHungary?Text(
                               'Még nincs fiókom! Regisztrálok!',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                              ),
+                            ):Text(
+                              'Nu ai cont? Poti crea unul in pasul urmator.',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,
@@ -326,7 +362,7 @@ class _SignInScreenState extends State<SignInScreen> {
         print("Sign In Error: $e");
         String exception = Auth.getExceptionText(e);
         Flushbar(
-          title: "Hiba a bejelentkezésnél!",
+          title: "ERROR",
           message: exception,
           duration: Duration(seconds: 5),
         )..show(context);

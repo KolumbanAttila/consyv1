@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:consyv1/Constants.dart';
 import 'package:consyv1/Models/Settings.dart';
 import 'package:consyv1/Models/UserModel.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -141,19 +142,19 @@ class Auth {
     if (e is PlatformException) {
       switch (e.message) {
         case 'There is no user record corresponding to this identifier. The user may have been deleted.':
-          return 'Ez a felhasználó nem létezik!';
+          return Constants.isHungary?'Ez a felhasználó nem létezik!':'Acest utilizator nu există!';
           break;
         case 'The password is invalid or the user does not have a password.':
-          return 'Rossz jelszó!';
+          return  Constants.isHungary?'Rossz jelszó!':'Parola greșită';
           break;
         case 'A network error (such as timeout, interrupted connection or unreachable host) has occurred.':
-          return 'Nincs internet!';
+          return Constants.isHungary?'Nincs internet!':'No internet';
           break;
         case 'The email address is already in use by another account.':
-          return 'Ez a felhasználó már létezik!';
+          return Constants.isHungary?'Ez a felhasználó már létezik!':'Ez a felhasználó már létezik!';
           break;
         default:
-          return 'Rendszerhiba!';
+          return 'SystemError!';
       }
     } else {
       return 'Unknown error occured.';
