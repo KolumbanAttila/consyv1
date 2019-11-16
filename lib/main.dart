@@ -31,9 +31,14 @@ class LocalisedAppState extends State<LocalisedApp> {
     _newLocaleDelegate = AppTranslationsDelegate(newLocale: null);
     application.onLocaleChanged = onLocaleChange;
   }
-
+  StateModel appState;
   @override
   Widget build(BuildContext context) {
+
+    appState = StateWidget.of(context).state;
+    Constants.uID = appState?.firebaseUserAuth?.uid ?? '';
+
+
     return MaterialApp(
       title: 'Consy',
       theme: buildTheme(),

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:consyv1/Constants.dart';
 import 'package:consyv1/Models/StateModel.dart';
 import 'package:consyv1/UI/LoginScreens/SignInScreen.dart';
@@ -14,6 +15,14 @@ class MainCategoryScreen extends StatefulWidget {
 class MainCategoryScreenState extends State<MainCategoryScreen> {
   bool _loadingVisible = false;
   StateModel appState;
+  String name;
+
+
+  @override
+  void initState() {
+    super.initState();
+    print(Constants.uID);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,22 +71,50 @@ class MainCategoryScreenState extends State<MainCategoryScreen> {
               children: <Widget>[
                 new UserAccountsDrawerHeader(
                   decoration: BoxDecoration(color: Color(0xFF9ABBD9)),
-                  accountName: Text(
-                    'Dr. Trimfa Egon',
-                    style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black),
-                  ),
+                  accountName:
+                  StreamBuilder(
+                      stream: Firestore.instance
+                          .collection('users')
+                          .document(Constants.uID)
+                          .snapshots(),
+                      builder: (context, snapshot) {
+                        if (!snapshot.hasData) {
+                          return new Text("Loading");
+                        }
+                        var userDocument = snapshot.data;
+                        name = userDocument["name"];
+                        return new  Text(
+                         userDocument["name"],
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
+                        );
+                      }),
                   currentAccountPicture: CircleAvatar(
                     backgroundColor:
                         Theme.of(context).platform == TargetPlatform.iOS
                             ? Colors.blue
                             : Colors.white,
-                    child: Text(
-                      "T",
-                      style: TextStyle(fontSize: 40.0),
-                    ),
+                    child: StreamBuilder(
+                        stream: Firestore.instance
+                            .collection('users')
+                            .document(Constants.uID)
+                            .snapshots(),
+                        builder: (context, snapshot) {
+                          if (!snapshot.hasData) {
+                            return new Text("Loading");
+                          }
+                          var userDocument = snapshot.data;
+                          name = userDocument["name"];
+                          return new  Text(
+                            name.substring(0,1),
+                            style: TextStyle(
+                                fontSize: 40,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black),
+                          );
+                        }),
                   ),
                 ),
                 ListTile(
@@ -284,6 +321,47 @@ class MainCategoryScreenState extends State<MainCategoryScreen> {
                 SizedBox(
                   height: 10,
                 ),
+                Card(
+                  elevation: 50,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  child: Container(
+                    height: 155,
+                    width: width * 0.45,
+                    decoration: BoxDecoration(
+                      border: Border.all(width: 1),
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      image: DecorationImage(
+                        image: AssetImage('assets/cards/tanacs.jpg'),
+                        fit: BoxFit.cover,
+                        colorFilter: new ColorFilter.mode(
+                            Colors.black.withOpacity(0.3),
+                            BlendMode.dstATop),
+                      ),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Constants.isHungary
+                            ? Text(
+                          'Tanács',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                              fontSize: 22),
+                        )
+                            : Text(
+                          'Consiliul',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                              fontSize: 22),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
@@ -302,7 +380,7 @@ class MainCategoryScreenState extends State<MainCategoryScreen> {
                             image: AssetImage('assets/cards/rendorseg.jpg'),
                             fit: BoxFit.cover,
                             colorFilter: new ColorFilter.mode(
-                                Colors.black.withOpacity(0.5),
+                                Colors.black.withOpacity(0.3),
                                 BlendMode.dstATop),
                           ),
                         ),
@@ -344,7 +422,7 @@ class MainCategoryScreenState extends State<MainCategoryScreen> {
                                   'assets/cards/polgarmesterihivatal.jpg'),
                               fit: BoxFit.cover,
                               colorFilter: new ColorFilter.mode(
-                                  Colors.black.withOpacity(0.35),
+                                  Colors.black.withOpacity(0.3),
                                   BlendMode.dstATop),
                             )),
                         child: Row(
@@ -384,10 +462,10 @@ class MainCategoryScreenState extends State<MainCategoryScreen> {
                       border: Border.all(width: 1),
                       borderRadius: BorderRadius.all(Radius.circular(20)),
                       image: DecorationImage(
-                        image: AssetImage('assets/cards/tanacs.jpg'),
+                        image: AssetImage('assets/cards/belugy.jpg'),
                         fit: BoxFit.cover,
                         colorFilter: new ColorFilter.mode(
-                            Colors.black.withOpacity(0.5),
+                            Colors.black.withOpacity(0.3),
                             BlendMode.dstATop),
                       ),
                     ),
@@ -396,14 +474,14 @@ class MainCategoryScreenState extends State<MainCategoryScreen> {
                       children: <Widget>[
                         Constants.isHungary
                             ? Text(
-                          'Tanács',
+                          'Belügyminisztérium',
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.black,
                               fontSize: 22),
                         )
                             : Text(
-                          'Consiliul',
+                          'Ministerul afacerilor interne',
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.black,
@@ -413,7 +491,6 @@ class MainCategoryScreenState extends State<MainCategoryScreen> {
                     ),
                   ),
                 ),
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
@@ -432,7 +509,7 @@ class MainCategoryScreenState extends State<MainCategoryScreen> {
                             image: AssetImage('assets/cards/torvenyszek.jpg'),
                             fit: BoxFit.cover,
                             colorFilter: new ColorFilter.mode(
-                                Colors.black.withOpacity(0.5),
+                                Colors.black.withOpacity(0.3),
                                 BlendMode.dstATop),
                           ),
                         ),
@@ -474,7 +551,7 @@ class MainCategoryScreenState extends State<MainCategoryScreen> {
                                   'assets/cards/posta.jpg'),
                               fit: BoxFit.cover,
                               colorFilter: new ColorFilter.mode(
-                                  Colors.black.withOpacity(0.35),
+                                  Colors.black.withOpacity(0.3),
                                   BlendMode.dstATop),
                             )),
                         child: Row(
@@ -514,10 +591,10 @@ class MainCategoryScreenState extends State<MainCategoryScreen> {
                       border: Border.all(width: 1),
                       borderRadius: BorderRadius.all(Radius.circular(20)),
                       image: DecorationImage(
-                        image: AssetImage('assets/cards/tanacs.jpg'),
+                        image: AssetImage('assets/cards/konzulatus.jpg'),
                         fit: BoxFit.cover,
                         colorFilter: new ColorFilter.mode(
-                            Colors.black.withOpacity(0.5),
+                            Colors.black.withOpacity(0.3),
                             BlendMode.dstATop),
                       ),
                     ),
@@ -526,14 +603,14 @@ class MainCategoryScreenState extends State<MainCategoryScreen> {
                       children: <Widget>[
                         Constants.isHungary
                             ? Text(
-                          'Tanács',
+                          'Magyarország Főkonzulátusa',
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.black,
                               fontSize: 22),
                         )
                             : Text(
-                          'Consiliul',
+                          'Consulatul general al Ungariei',
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.black,

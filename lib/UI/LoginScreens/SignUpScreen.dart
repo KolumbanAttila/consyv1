@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:consyv1/Constants.dart';
 import 'package:consyv1/Models/UserModel.dart';
 import 'package:consyv1/Util/Auth.dart';
@@ -7,6 +8,7 @@ import 'package:flushbar/flushbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 
 class SignUpScreen extends StatefulWidget {
   _SignUpScreenState createState() => _SignUpScreenState();
@@ -150,7 +152,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             color: Colors.grey,
           ),
         ),
-        hintText: Constants.isHungary?'Jelszó':'Verificare parola',
+        hintText: Constants.isHungary?'Jelszó ellenőrzés':'Verificare parola',
         hintStyle: TextStyle(fontFamily: 'Esteban'),
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
@@ -164,12 +166,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
           borderRadius: BorderRadius.circular(24),
         ),
         onPressed: () {
+          DateTime now = DateTime.now();
+          String formattedDate = DateFormat('dd-MM-yyyy hh:mm a').format(now);
           if (_password.text == _passwordVal.text && isChecked ) {
             _emailSignUp(
                 name: _name.text,
                 email: _email.text,
                 password: _password.text,
                 location: _location.text,
+                regDate: formattedDate,
+                userType: "basic",
                 context: context);
           } else {
             Flushbar(
@@ -503,15 +509,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
       String email,
       String location,
       String password,
+        String userType,
+      String regDate,
       BuildContext context}) async {
     if (_formKey.currentState.validate()) {
       try {
         SystemChannels.textInput.invokeMethod('TextInput.hide');
         await _changeLoadingVisible();
-        //need await so it has chance to go through error if found.
         await Auth.signUp(email, password).then((uID) {
           Auth.addUserSettingsDB(new User(
-              userId: uID, email: email, name: name, location: location));
+              userId: uID, email: email, name: name, location: location,regDate: regDate,userType: userType));
         });
         await Navigator.pushNamed(context, '/signin');
       } catch (e) {
