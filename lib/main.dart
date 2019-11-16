@@ -37,6 +37,8 @@ class LocalisedAppState extends State<LocalisedApp> {
 
     appState = StateWidget.of(context).state;
     Constants.uID = appState?.firebaseUserAuth?.uid ?? '';
+    Constants.uName = appState?.user?.name ?? '';
+
 
 
     return MaterialApp(
