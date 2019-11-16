@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "852331208504",
+    "firebase_url": "https://consyapp-4fce0.firebaseio.com",
+    "project_id": "consyapp-4fce0",
+    "storage_bucket": "consyapp-4fce0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:852331208504:android:57457d3815705be3e62bcd",
+        "android_client_info": {
+          "package_name": "com.consy.consyv1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "852331208504-pl0pi5hhkp333oed9oocp81l4ppaijhq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.consy.consyv1",
+            "certificate_hash": "5ae078781cc67224b1510ef9f23fdb44346d1dc8"
+          }
+        },
+        {
+          "client_id": "852331208504-5e9646fndpjnjsoud38t9lmhvl61ork9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVQjrP96Bn69IN182rSJRqy0YjRAOF7-Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "852331208504-5e9646fndpjnjsoud38t9lmhvl61ork9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
