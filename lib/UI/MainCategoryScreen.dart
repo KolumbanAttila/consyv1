@@ -11,6 +11,7 @@ import 'package:consyv1/UI/CategoryScreen/Prison.dart';
 import 'package:consyv1/UI/CategoryScreen/Tribunal.dart';
 import 'package:consyv1/UI/CategoryScreen/WhiteHouse.dart';
 import 'package:consyv1/UI/LoginScreens/SignInScreen.dart';
+import 'package:consyv1/UI/MyReservs.dart';
 import 'package:consyv1/UI/ProfilScreen.dart';
 import 'package:consyv1/Util/StateWidget.dart';
 import 'package:flutter/material.dart';
@@ -207,7 +208,12 @@ class MainCategoryScreenState extends State<MainCategoryScreen> {
                     Icons.arrow_forward_ios,
                     color: Colors.black,
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => MyReservs()),
+                    );
+                  },
                 ),
                 ListTile(
                   leading: Icon(
@@ -344,44 +350,49 @@ class MainCategoryScreenState extends State<MainCategoryScreen> {
                     );
                   },
                   child: Card(
+                    color:Colors.white,
                     elevation: 50,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0),
                     ),
-                    child: Container(
-                      height: 155,
-                      width: width * 0.45,
-                      decoration: BoxDecoration(
-                        border: Border.all(width: 1),
-                        borderRadius: BorderRadius.all(Radius.circular(20)),
-                        image: DecorationImage(
-                          image: AssetImage('assets/cards/tanacs.jpg'),
-                          fit: BoxFit.cover,
-                          colorFilter: new ColorFilter.mode(
-                              Colors.black.withOpacity(0.3),
-                              BlendMode.dstATop),
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          height: 155,
+                          decoration: BoxDecoration(
+                            color: Color(0xFFD2DAE2),
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                              topRight: Radius.circular(20),
+                            ),
+                            image: DecorationImage(
+                              image: AssetImage('assets/cards/tanacs.jpg'),
+                              fit: BoxFit.cover,
+
+                            ),
+                          ),
                         ),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Constants.isHungary
-                              ? Text(
-                            'Fehérház',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                                fontSize: 22),
-                          )
-                              : Text(
-                            'Casă albă',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                                fontSize: 22),
-                          )
-                        ],
-                      ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Constants.isHungary
+                                ? Text(
+                              'Fehérház',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                  fontSize: 22),
+                            )
+                                : Text(
+                              'Casă albă',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                  fontSize: 22),
+                            )
+                          ],
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -400,40 +411,43 @@ class MainCategoryScreenState extends State<MainCategoryScreen> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20.0),
                         ),
-                        child: Container(
-                          height: 155,
-                          width: width * 0.45,
-                          decoration: BoxDecoration(
-                            border: Border.all(width: 1),
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
-                            image: DecorationImage(
-                              image: AssetImage('assets/cards/rendorseg.jpg'),
-                              fit: BoxFit.cover,
-                              colorFilter: new ColorFilter.mode(
-                                  Colors.black.withOpacity(0.3),
-                                  BlendMode.dstATop),
+                        child: Column(
+                          children: <Widget>[
+                            Container(
+                              height: 155,
+                              width: width * 0.45,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(20),
+                                  topRight: Radius.circular(20),
+                                ),
+                                image: DecorationImage(
+                                  image: AssetImage('assets/cards/rendorseg.jpg'),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
                             ),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Constants.isHungary
-                                  ? Text(
-                                      'Rendőrség',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.black,
-                                          fontSize: 22),
-                                    )
-                                  : Text(
-                                      'Poliție',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.black,
-                                          fontSize: 22),
-                                    )
-                            ],
-                          ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Constants.isHungary
+                                    ? Text(
+                                  'Rendőrség',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                      fontSize: 22),
+                                )
+                                    : Text(
+                                  'Poliție',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                      fontSize: 22),
+                                )
+                              ],
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -441,7 +455,7 @@ class MainCategoryScreenState extends State<MainCategoryScreen> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Primaria()),
+                          MaterialPageRoute(builder: (context) => Police()),
                         );
                       },
                       child: Card(
@@ -449,30 +463,32 @@ class MainCategoryScreenState extends State<MainCategoryScreen> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20.0),
                         ),
-                        child: Container(
-                          height: 155,
-                          width: width * 0.45,
-                          decoration: BoxDecoration(
-                              border: Border.all(width: 1),
-                              borderRadius: BorderRadius.all(Radius.circular(20)),
-                              image: DecorationImage(
-                                image: AssetImage(
-                                    'assets/cards/polgarmesterihivatal.jpg'),
-                                fit: BoxFit.cover,
-                                colorFilter: new ColorFilter.mode(
-                                    Colors.black.withOpacity(0.3),
-                                    BlendMode.dstATop),
-                              )),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Flexible(
-                                child: Constants.isHungary?Text(
-                                  'Polgármesteri hivatal',
+                        child: Column(
+                          children: <Widget>[
+                            Container(
+                              height: 140,
+                              width: width * 0.45,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(20),
+                                  topRight: Radius.circular(20),
+                                ),
+                                image: DecorationImage(
+                                  image: AssetImage('assets/cards/polgarmesterihivatal.jpg'),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Constants.isHungary
+                                    ? Text(
+                                  'Polgrármesteri\nhivatal',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: Colors.black,
-                                      fontSize: 22),textAlign: TextAlign.center,
+                                      fontSize: 16),textAlign: TextAlign.center,
                                 )
                                     : Text(
                                   'Primăria',
@@ -480,10 +496,10 @@ class MainCategoryScreenState extends State<MainCategoryScreen> {
                                       fontWeight: FontWeight.bold,
                                       color: Colors.black,
                                       fontSize: 22),
-                                ),
-                              ),
-                            ],
-                          ),
+                                )
+                              ],
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -501,40 +517,39 @@ class MainCategoryScreenState extends State<MainCategoryScreen> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0),
                     ),
-                    child: Container(
-                      height: 155,
-                      width: width * 0.45,
-                      decoration: BoxDecoration(
-                        border: Border.all(width: 1),
-                        borderRadius: BorderRadius.all(Radius.circular(20)),
-                        image: DecorationImage(
-                          image: AssetImage('assets/cards/interne.jpg'),
-                          fit: BoxFit.cover,
-                          colorFilter: new ColorFilter.mode(
-                              Colors.black.withOpacity(0.3),
-                              BlendMode.dstATop),
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          height: 155,
+                          width: width * 1,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage('assets/cards/interne.jpg'),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
                         ),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Constants.isHungary
-                              ? Text(
-                            'Belügyminisztérium',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                                fontSize: 22),
-                          )
-                              : Text(
-                            'Ministerul afacerilor interne',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                                fontSize: 22),
-                          )
-                        ],
-                      ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Constants.isHungary
+                                ? Text(
+                              'Belügyminisztérium',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                  fontSize: 22),
+                            )
+                                : Text(
+                              'Ministerul afacerilor interne',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                  fontSize: 22),
+                            )
+                          ],
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -553,40 +568,44 @@ class MainCategoryScreenState extends State<MainCategoryScreen> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20.0),
                         ),
-                        child: Container(
-                          height: 155,
-                          width: width * 0.45,
-                          decoration: BoxDecoration(
-                            border: Border.all(width: 1),
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
-                            image: DecorationImage(
-                              image: AssetImage('assets/cards/torvenyszek.jpg'),
-                              fit: BoxFit.cover,
-                              colorFilter: new ColorFilter.mode(
-                                  Colors.black.withOpacity(0.3),
-                                  BlendMode.dstATop),
+                        child: Column(
+                          children: <Widget>[
+                            Container(
+                              height: 155,
+                              width: width * 0.45,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(20),
+                                  topRight: Radius.circular(20),
+                                ),
+                                image: DecorationImage(
+                                  image: AssetImage('assets/cards/torvenyszek.jpg'),
+                                  fit: BoxFit.cover,
+
+                                ),
+                              ),
                             ),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Constants.isHungary
-                                  ? Text(
-                                'Törvényszék',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black,
-                                    fontSize: 22),
-                              )
-                                  : Text(
-                                'Tribunal',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black,
-                                    fontSize: 22),
-                              )
-                            ],
-                          ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Constants.isHungary
+                                    ? Text(
+                                  'Törvényszék',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                      fontSize: 22),
+                                )
+                                    : Text(
+                                  'Tribunal',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                      fontSize: 22),
+                                )
+                              ],
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -597,46 +616,48 @@ class MainCategoryScreenState extends State<MainCategoryScreen> {
                           MaterialPageRoute(builder: (context) => Posta()),
                         );
                       },
-                      child: Card(
+                      child:Card(
                         elevation: 50,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20.0),
                         ),
-                        child: Container(
-                          height: 155,
-                          width: width * 0.45,
-                          decoration: BoxDecoration(
-                              border: Border.all(width: 1),
-                              borderRadius: BorderRadius.all(Radius.circular(20)),
-                              image: DecorationImage(
-                                image: AssetImage(
-                                    'assets/cards/posta.jpg'),
-                                fit: BoxFit.cover,
-                                colorFilter: new ColorFilter.mode(
-                                    Colors.black.withOpacity(0.3),
-                                    BlendMode.dstATop),
-                              )),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Flexible(
-                                child: Constants.isHungary?Text(
+                        child: Column(
+                          children: <Widget>[
+                            Container(
+                              height: 155,
+                              width: width * 0.45,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(20),
+                                  topRight: Radius.circular(20),
+                                ),
+                                image: DecorationImage(
+                                  image: AssetImage('assets/cards/posta.jpg'),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Constants.isHungary
+                                    ? Text(
                                   'Román posta',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: Colors.black,
-                                      fontSize: 22),textAlign: TextAlign.center,
+                                      fontSize: 22),
                                 )
                                     : Text(
-                                  'Poşta Română',
+                                  'Poșta Română',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: Colors.black,
                                       fontSize: 22),
-                                ),
-                              ),
-                            ],
-                          ),
+                                )
+                              ],
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -654,40 +675,43 @@ class MainCategoryScreenState extends State<MainCategoryScreen> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0),
                     ),
-                    child: Container(
-                      height: 155,
-                      width: width * 0.45,
-                      decoration: BoxDecoration(
-                        border: Border.all(width: 1),
-                        borderRadius: BorderRadius.all(Radius.circular(20)),
-                        image: DecorationImage(
-                          image: AssetImage('assets/cards/konzulatus.jpg'),
-                          fit: BoxFit.cover,
-                          colorFilter: new ColorFilter.mode(
-                              Colors.black.withOpacity(0.3),
-                              BlendMode.dstATop),
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          height: 155,
+                          width: width * 1,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                              topRight: Radius.circular(20),
+                            ),
+                            image: DecorationImage(
+                              image: AssetImage('assets/cards/konzulatus.jpg'),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
                         ),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Constants.isHungary
-                              ? Text(
-                            'Magyarország Főkonzulátusa',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                                fontSize: 22),
-                          )
-                              : Text(
-                            'Consulatul general al Ungariei',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                                fontSize: 22),
-                          )
-                        ],
-                      ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Constants.isHungary
+                                ? Text(
+                              'Magyarország Főkonzulátusa',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                  fontSize: 22),
+                            )
+                                : Text(
+                              'Consulatul general al Ungariei',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                  fontSize: 22),
+                            )
+                          ],
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -706,40 +730,43 @@ class MainCategoryScreenState extends State<MainCategoryScreen> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20.0),
                         ),
-                        child: Container(
-                          height: 155,
-                          width: width * 0.45,
-                          decoration: BoxDecoration(
-                            border: Border.all(width: 1),
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
-                            image: DecorationImage(
-                              image: AssetImage('assets/cards/prison.jpg'),
-                              fit: BoxFit.cover,
-                              colorFilter: new ColorFilter.mode(
-                                  Colors.black.withOpacity(0.3),
-                                  BlendMode.dstATop),
+                        child: Column(
+                          children: <Widget>[
+                            Container(
+                              height: 155,
+                              width: width * 0.45,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(20),
+                                  topRight: Radius.circular(20),
+                                ),
+                                image: DecorationImage(
+                                  image: AssetImage('assets/cards/prison.jpg'),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
                             ),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Constants.isHungary
-                                  ? Text(
-                                'Börtön',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black,
-                                    fontSize: 22),
-                              )
-                                  : Text(
-                                'Penitenciar',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black,
-                                    fontSize: 22),
-                              )
-                            ],
-                          ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Constants.isHungary
+                                    ? Text(
+                                  'Börtön',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                      fontSize: 22),
+                                )
+                                    : Text(
+                                  'Penitenciar',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                      fontSize: 22),
+                                )
+                              ],
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -755,25 +782,28 @@ class MainCategoryScreenState extends State<MainCategoryScreen> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20.0),
                         ),
-                        child: Container(
-                          height: 155,
-                          width: width * 0.45,
-                          decoration: BoxDecoration(
-                              border: Border.all(width: 1),
-                              borderRadius: BorderRadius.all(Radius.circular(20)),
-                              image: DecorationImage(
-                                image: AssetImage(
-                                    'assets/cards/anaf.jpg'),
-                                fit: BoxFit.cover,
-                                colorFilter: new ColorFilter.mode(
-                                    Colors.black.withOpacity(0.3),
-                                    BlendMode.dstATop),
-                              )),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Flexible(
-                                child: Constants.isHungary?Text(
+                        child: Column(
+                          children: <Widget>[
+                            Container(
+                              height: 155,
+                              width: width * 0.45,
+                              decoration: BoxDecoration(
+
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(20),
+                                    topRight: Radius.circular(20),
+                                  ),
+                                  image: DecorationImage(
+                                    image: AssetImage(
+                                        'assets/cards/anaf.jpg'),
+                                    fit: BoxFit.cover,
+
+                                  )),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Constants.isHungary?Text(
                                   'ANAF',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
@@ -787,9 +817,10 @@ class MainCategoryScreenState extends State<MainCategoryScreen> {
                                       color: Colors.black,
                                       fontSize: 22),
                                 ),
-                              ),
-                            ],
-                          ),
+
+                              ],
+                            ),
+                          ],
                         ),
                       ),
                     ),

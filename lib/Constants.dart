@@ -2,6 +2,15 @@ class Constants{
   static String userName;
   static String uID;
   static String uName;
+  static String foglalas1ora;
+  static String foglalas1nev;
+  static String foglalas1date;
+  static String foglalas2ora;
+  static String foglalas2nev;
+  static String foglalas2date;
+  static String foglalas3ora;
+  static String foglalas3nev;
+  static String foglalas3date;
   static bool isHungary = true;
   static  var policeListHU = ['Közrendészet', 'Forgalmi rendészet', 'Kriminalisztika','Bűnügyi','Fegyverosztály'];
   static  var policeListRO = ['Ordine publică', 'Rutieră', 'Criminalistică','Poliția judiciară','Diviza de arme'];

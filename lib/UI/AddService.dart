@@ -168,7 +168,7 @@ class AddServiceState extends State<AddService>{
               visibility: _finalService == 'one'?VisibilityFlag.visible:VisibilityFlag.invisible,
             ),
             RaisedButton(
-              onPressed: () {
+              onPressed: () async {
 
                 if(_finalService == 'one'){
                   _finalService = 'Rendőrség';
@@ -184,7 +184,8 @@ class AddServiceState extends State<AddService>{
                 }else{
                   subCat = "bunugy";
                 }
-                addService();
+                await addService();
+                await _updateData();
                 print(_finalService);
               },
               child: Text('Mentés'),
@@ -219,6 +220,12 @@ class AddServiceState extends State<AddService>{
       )..show(context);
     }).catchError((e) {
       print(e);
+    });
+  }
+  _updateData() async {
+    await db
+        .collection('users').document(Constants.uID).updateData({
+          'user_type':'service'
     });
   }
 }
