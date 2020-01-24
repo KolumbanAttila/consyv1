@@ -403,7 +403,7 @@ class MainCategoryScreenState extends State<MainCategoryScreen> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Police()),
+                          MaterialPageRoute(builder: (context) => PoliceScreen()),
                         );
                       },
                       child: Card(
@@ -455,7 +455,7 @@ class MainCategoryScreenState extends State<MainCategoryScreen> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Police()),
+                          MaterialPageRoute(builder: (context) => PoliceScreen()),
                         );
                       },
                       child: Card(

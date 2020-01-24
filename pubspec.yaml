@@ -32,6 +32,8 @@ dependencies:
   progress_hud: ^1.1.0
   firebase: ^6.0.0
   intl: any
+  sqflite: ^1.0.0
+  path_provider: ^0.4.1
 
 dev_dependencies:
   flutter_test:
